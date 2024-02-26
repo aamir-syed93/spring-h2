@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-aws-app
+spec:
+  selector:
+    matchLabels:
+      app: spring-aws-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: spring-aws-app
+    spec:
+      containers:
+        - name: spring-aws-app
+          image: 221456766883.dkr.ecr.us-east-2.amazonaws.com/spring-aws-app:latest
+          ports:
+            - containerPort: 8080
+
+---
+
+apiVersion: v1 # Kubernetes API version
+kind: Service # Kubernetes resource kind we are creating
+metadata: # Metadata of the resource kind we are creating
+  name: spring-aws-app
+spec:
+  selector:
+    app: spring-aws-app
+  ports:
+    - protocol: "TCP"
+      port: 8080 # The port that the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service
+  type: LoadBalancer # type of the service.
+
