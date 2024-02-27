@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spring-aws-app
-          image: 221456766883.dkr.ecr.us-east-2.amazonaws.com/spring-aws-app:latest
+          image: devaamir17/spring-aws-app:latest
           ports:
             - containerPort: 8080
 
